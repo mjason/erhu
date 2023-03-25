@@ -1,7 +1,16 @@
 PATH
   remote: .
   specs:
-    erhu (0.1.1)
+    erhu (0.1.4)
+      faraday (~> 2.7, >= 2.7.4)
+      faraday-follow_redirects (~> 0.3.0)
+      pastel (~> 0.8.0)
+      rubyzip (~> 2.3, >= 2.3.2)
+      rugged (~> 1.6, >= 1.6.2)
+      tty-command (~> 0.10.1)
+      tty-platform (~> 0.3.0)
+      tty-progressbar (~> 0.18.2)
+      tty-spinner (~> 0.9.3)
 
 GEM
   remote: https://rubygems.org/
@@ -36,19 +45,12 @@ GEM
 
 PLATFORMS
   arm64-darwin-22
+  ruby
+  x86_64-linux
 
 DEPENDENCIES
   erhu!
-  faraday
-  faraday-follow_redirects
-  pastel
   rake (~> 13.0)
-  rubyzip
-  rugged
-  tty-command
-  tty-platform
-  tty-progressbar
-  tty-spinner
 
 BUNDLED WITH
    2.4.6

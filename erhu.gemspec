@@ -30,6 +30,16 @@ Gem::Specification.new do |spec|
   spec.executables = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
+  spec.add_dependency "tty-platform", '~> 0.3.0'
+  spec.add_dependency 'tty-command', '~> 0.10.1'
+  spec.add_dependency 'tty-progressbar', '~> 0.18.2'
+  spec.add_dependency 'tty-spinner', '~> 0.9.3'
+  spec.add_dependency 'pastel', '~> 0.8.0'
+  spec.add_dependency 'rugged', '~> 1.6', '>= 1.6.2'
+  spec.add_dependency 'faraday', '~> 2.7', '>= 2.7.4'
+  spec.add_dependency 'faraday-follow_redirects', '~> 0.3.0'
+  spec.add_dependency 'rubyzip', '~> 2.3', '>= 2.3.2'
+
   # Uncomment to register a new dependency of your gem
   # spec.add_dependency "example-gem", "~> 1.0"
 

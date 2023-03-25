@@ -9,7 +9,7 @@ gem install erhu
 
 ## 如何使用
 
-在根目录里面建立`ErhuFile`，用于拉取依赖
+在根目录里面建立`ErhuFile`， 当前也可以使用`erhu init`用于拉取依赖
 
 ```ruby
 target "./thirdparty"

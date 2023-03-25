@@ -6,14 +6,14 @@ source "https://rubygems.org"
 gemspec
 
 gem "rake", "~> 13.0"
-gem 'tty-platform'
-gem "tty-command"
-gem "tty-progressbar"
-gem "tty-spinner"
+# gem 'tty-platform'
+# gem "tty-command"
+# gem "tty-progressbar"
+# gem "tty-spinner"
 
-gem "pastel"
-gem "rugged"
+# gem "pastel"
+# gem "rugged"
 
-gem 'faraday'
-gem 'faraday-follow_redirects'
-gem 'rubyzip'
+# gem 'faraday'
+# gem 'faraday-follow_redirects'
+# gem 'rubyzip'
