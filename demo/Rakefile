@@ -1,0 +1,11 @@
+require "erhu"
+
+task :build do |t|
+  Cmd.new().chdir("./build")
+    .run("cmake", "..")
+    .run("make")
+end
+
+task run: [:build] do |t|
+  Cmd.new().chdir("./target").run("./Erhu")
+end
