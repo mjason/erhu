@@ -40,26 +40,25 @@ module Erhu
         FileUtils.rm_rf("#{@target}/#{name}")
       end
 
-      bar = TTY::ProgressBar.new("clone #{name} [:bar] :percent", total: 50)
-      transfer_progress = lambda do |total_objects, indexed_objects, received_objects, local_objects, total_deltas, indexed_deltas, received_bytes|      
-        bar.ratio = indexed_objects / total_objects.to_f
+      warn!("Do not use Git for version control without careful consideration.")
+
+      spinner = TTY::Spinner.new("[:spinner] git clone #{repository_url} ...")
+      spinner.auto_spin
+      repo = Git.clone(repository_url, "#{@target}/#{name}", branch: branch)
+      unless tag.blank?
+        
+        tags = repo.tags
+        if tags.map { |tag| tag.name }.include?(tag)
+          commit_id = tags.select { |node| node.name == tag }.first.objectish
+          repo.checkout(tag, start_point: commit_id, new_branch: true)
+        end
       end
-      
-      repo = Rugged::Repository.clone_at(repository_url, 
-        "#{@target}/#{name}",
-        depth: 1,
-        checkout_branch: branch,
-        transfer_progress: transfer_progress
-      )
-      if ! tag.blank? && ! repo.tags[tag].blank?
-        tag_repo = repo.tags[tag]
-        target = tag_repo.target      
-        repo.checkout(target.oid, strategy: :safe)
-      end
+      spinner.stop("Done!")
+
       block.call(repo, self) unless block.blank?
 
-      self.database[name] = {repository_url: repository_url, 
-        branch: branch, name: name, tag: tag, commit: repo.head.target.oid
+      self.database[name] = {repository_url: repository_url,
+        branch: branch, name: name, tag: tag, commit: repo.revparse('HEAD')
       }
     rescue => e
       error! e
@@ -108,6 +107,7 @@ module Erhu
 
     def zip(package_file_path, package_name)
       spinner = TTY::Spinner.new("[:spinner] extracted :title ...", format: :pulse_2)
+      spinner.auto_spin
 
       Zip::File.open(package_file_path) do |zip_file|
         zip_file.each do |entry|        

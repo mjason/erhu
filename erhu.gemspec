@@ -35,7 +35,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'tty-progressbar', '~> 0.18.2'
   spec.add_dependency 'tty-spinner', '~> 0.9.3'
   spec.add_dependency 'pastel', '~> 0.8.0'
-  spec.add_dependency 'rugged', '~> 1.6', '>= 1.6.2'
+  spec.add_dependency 'git', '~> 1.18'
   spec.add_dependency 'faraday', '~> 2.7', '>= 2.7.4'
   spec.add_dependency 'faraday-follow_redirects', '~> 0.3.0'
   spec.add_dependency 'rubyzip', '~> 2.3', '>= 2.3.2'

@@ -7,3 +7,8 @@
 /spec/reports/
 /tmp/
 *.gem
+
+thirdparty
+build
+target
+.erhu

@@ -7,6 +7,8 @@
 gem install erhu
 ```
 
+注意：你的系统必须有cmake和pkg-config，mac用户可以用homebrew安装
+
 ## 如何使用
 
 在根目录里面建立`ErhuFile`， 当前也可以使用`erhu init`用于拉取依赖

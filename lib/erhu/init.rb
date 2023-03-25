@@ -4,13 +4,14 @@ require "tty-progressbar"
 require "tty-spinner"
 require "pastel"
 require 'fileutils'
-require 'rugged'
 require "uri"
 require 'yaml'
 require 'faraday'
 require 'faraday/follow_redirects'
 require 'tempfile'
 require 'zip'
+require 'git'
+require 'optparse'
 
 class Object
   def blank?
@@ -28,12 +29,17 @@ end
 
 def error!(*args)
   error = pastel.red.bold.detach
-  puts "error: #{error.(*args)}"
+  puts "Error: #{error.(*args)}"
+end
+
+def warn!(*args)
+  warning  = pastel.yellow.detach
+  puts "Warning: #{warning.(*args)}"
 end
 
 class Cmd
-  def initialize(pty: true, uuid: false, color: true)
-    @cmd = TTY::Command.new(pty: pty, uuid: uuid, color: color)
+  def initialize(pty: true, uuid: false, color: true, printer: :pretty)
+    @cmd = TTY::Command.new(pty: pty, uuid: uuid, color: color, pretty: printer)
   end
 
   def chdir(path)

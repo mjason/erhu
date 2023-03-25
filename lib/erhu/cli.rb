@@ -1,5 +1,3 @@
-require 'optparse'
-
 module Erhu
   module_function
   def cli()
