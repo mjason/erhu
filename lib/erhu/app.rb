@@ -106,7 +106,7 @@ module Erhu
     end
 
     def zip(package_file_path, package_name)
-      spinner = TTY::Spinner.new("[:spinner] extracted :title ...", format: :pulse_2)
+      spinner = TTY::Spinner.new("[:spinner] extracted :title ...")
       spinner.auto_spin
 
       Zip::File.open(package_file_path) do |zip_file|
