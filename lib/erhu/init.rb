@@ -37,6 +37,21 @@ def warn!(*args)
   puts "Warning: #{warning.(*args)}"
 end
 
+def unzip(zip_file_path, target_directory)
+  spinner = TTY::Spinner.new("[:spinner] extracted :title ...")
+  spinner.auto_spin
+
+  Zip::File.open(zip_file_path) do |zip_file|
+    zip_file.each do |entry|        
+      dest_path = File.join(target_directory, entry.name.split('/')[1..-1].join('/'))
+      entry.extract(dest_path)
+      spinner.update title: entry.name
+    end
+  end
+  spinner.update title: "ALL"
+  spinner.stop("Done!")
+end
+
 class Cmd
   def initialize(pty: true, uuid: false, color: true, printer: :pretty)
     @cmd = TTY::Command.new(pty: pty, uuid: uuid, color: color, pretty: printer)

@@ -50,19 +50,25 @@ end
 
 ```ruby
 # 方法定义 git(repository_url, branch: nil, name: nil, tag: nil, &block) 
-git "https://github.com/Tencent/rapidjson", tag: "v1.1.0" do |repo, erhu|
+git "https://github.com/Tencent/rapidjson", tag: "v1.1.0" do |repo, env|
   # repo 的接口请看 https://rubydoc.info/gems/git/Git/Base
-  # erhu 的接口请看 https://github.com/mjason/erhu/blob/main/lib/erhu/app.rb
+  # env 的接口请看 https://github.com/mjason/erhu/blob/main/lib/erhu/app.rb
   # 还有一些高级接口 https://github.com/mjason/erhu/blob/main/lib/erhu/init.rb
 end
 
 # 方法定义 package(package_url, name: nil, &block)
-package "https://github.com/DaveGamble/cJSON/archive/refs/tags/v1.7.15.zip", name: "cjson" do |package_file_path, erhu|
+package "https://github.com/DaveGamble/cJSON/archive/refs/tags/v1.7.15.zip", name: "cjson" do |package_file_path, env|
   # package_file_path 下载包的地址，String类型，你得自己解压
-  # erhu 同上
+  # env 同上
 
   # 解压示例
-  erhu.zip(package_file_path, 'cjson')
+  # 
+  # zip_file_path: String类型，包含要解压缩的zip文件的路径
+  # target_directory: String类型，包含要提取zip文件的位置
+  #
+  # 该方法使用TTY::Spinner库来显示进度条，并通过调用Zip::File库中的方法来解压缩zip文件。
+  # 它迭代zip文件中的每个条目，并使用条目名称中的信息来构造目标路径。
+  unzip(package_file_path, "./libs/cjson")
 end
 ```
 

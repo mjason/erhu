@@ -106,18 +106,7 @@ module Erhu
     end
 
     def zip(package_file_path, package_name)
-      spinner = TTY::Spinner.new("[:spinner] extracted :title ...")
-      spinner.auto_spin
-
-      Zip::File.open(package_file_path) do |zip_file|
-        zip_file.each do |entry|        
-          dest_path = File.join(@target, package_name, entry.name.split('/')[1..-1].join('/'))
-          entry.extract(dest_path)
-          spinner.update title: entry.name
-        end
-      end
-      spinner.update title: "ALL"
-      spinner.stop("Done!")
+      unzip(package_file_path, File.join(@target, package_name))
     end
 
     def run
