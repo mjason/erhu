@@ -1,5 +1,12 @@
 # Erhu
 
+<div align="center">
+  <a href="https://rubygems.org/gems/erhu" alt="RubyGems Version">
+    <img src="https://img.shields.io/gem/v/erhu.svg?style=flat-square&label=current-version" alt="RubyGems Version" />
+  </a>
+</div>
+
+
 一个创新的包管理，可以用来管理C语言的包，或者管理算法的包，理论可以用在各种地方，目前主要支持C++，算法管理。
 
 ## install
