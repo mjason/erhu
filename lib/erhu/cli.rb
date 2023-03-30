@@ -11,6 +11,7 @@ module Erhu
         puts """
         erhu init -> init your project
         erhu install(options) -> install your project depends
+        erhu exec -> run some shell (add .env to ENV)
         """
         exit
       end
@@ -44,6 +45,10 @@ module Erhu
     
     subcommands['install'] = Proc.new do |args|
       Erhu::App.new.run
+    end
+
+    subcommands['exec'] = Proc.new do |args|
+      exec args.join(" ")
     end
 
     if ARGV.blank?

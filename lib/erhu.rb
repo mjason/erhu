@@ -7,4 +7,8 @@ require_relative "erhu/cli"
 module Erhu
   class Error < StandardError; end
   # Your code goes here...
+
+  module_eval do
+    Dotenv.load
+  end
 end

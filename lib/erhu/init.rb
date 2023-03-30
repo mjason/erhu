@@ -11,6 +11,7 @@ require 'zip'
 require 'git'
 require 'optparse'
 require "down/http"
+require 'dotenv'
 
 class Object
   def blank?

@@ -39,6 +39,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "down", "~> 5.0"
   spec.add_dependency "http", "~> 5.0"
   spec.add_dependency 'rubyzip', '~> 2.3', '>= 2.3.2'
+  spec.add_dependency 'dotenv', '~> 2.8', '>= 2.8.1'
 
   # Uncomment to register a new dependency of your gem
   # spec.add_dependency "example-gem", "~> 1.0"

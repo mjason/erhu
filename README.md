@@ -40,6 +40,10 @@ package "https://github.com/DaveGamble/cJSON/archive/refs/tags/v1.7.15.zip", nam
 
 ## 高级用法
 
+### 项目环境变量使用
+erhu 集成了dotenv，支持项目中通过.env来指定环境变量，具体可以查看demo目录中的.env文件
+.env文件中的环境变量在 `Rakefile` 和 `erhu exec` 中可以使用
+
 ### 系统判断
 
 ```ruby
