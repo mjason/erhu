@@ -2,17 +2,17 @@ module Erhu
   class App
     attr_accessor :erhufile
     def initialize(erhufile_path=nil)
-      @erhufile = erhufile_path || File.join(Dir.pwd, "erhuFile")
+      @erhufile = erhufile_path || File.join(Dir.pwd, "ErhuFile")
 
       @erhu_path = File.join(Dir.pwd, ".erhu")
       unless Dir.exist?(@erhu_path)
         FileUtils.mkdir_p(@erhu_path)
         puts "Created #{@erhu_path}"
-      end    
+      end
       @database_path = File.join(@erhu_path, "database.yml")
     end
 
-    def database    
+    def database
       if File.exist?(@database_path)
         @database ||= YAML.load_file(@database_path) || {}
       else
@@ -77,25 +77,19 @@ module Erhu
         return
       end
 
-      conn = Faraday.new do |faraday|
-        faraday.use Faraday::FollowRedirects::Middleware
-        faraday.adapter Faraday.default_adapter
-      end
+      bar = TTY::ProgressBar.new("downloading #{package_name} :percent [:bar]", total: 50)
+      total_size = 0
 
-      bar = TTY::ProgressBar.new("Downloading #{package_name} [:bar] :percent", total: 50, interval: 0.1)
-
-      streamed = []
-      response = conn.get(package_url) do |req|
-        req.options.on_data = Proc.new do |chunk, overall_received_bytes, env|
-          content_length = env.response_headers["content-length"]&.to_f
-          bar.ratio = overall_received_bytes / content_length if !content_length.blank? && content_length > 0
-          streamed << chunk
-        end
-      end
-
-      File.open(package_file_path, 'w') do |f|
-        f.write(streamed.join)
-      end
+      http.download package_url, destination: package_file_path,
+        content_length_proc: -> (content_length) {
+          total_size = content_length
+        },
+        progress_proc: -> (progress) {
+          if total_size > 0
+            bar.ratio = progress / total_size.to_f
+          end
+        }
+      bar.finish
 
       unless block.blank?
         block.call(package_file_path, self)

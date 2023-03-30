@@ -6,12 +6,11 @@ require "pastel"
 require 'fileutils'
 require "uri"
 require 'yaml'
-require 'faraday'
-require 'faraday/follow_redirects'
 require 'tempfile'
 require 'zip'
 require 'git'
 require 'optparse'
+require "down/http"
 
 class Object
   def blank?
@@ -50,6 +49,10 @@ def unzip(zip_file_path, target_directory)
   end
   spinner.update title: "ALL"
   spinner.stop("Done!")
+end
+
+def http
+  http = Down::Http.new
 end
 
 class Cmd
