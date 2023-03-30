@@ -1,6 +1,6 @@
 # Erhu
 
-<div align="center">
+<div align="left">
   <a href="https://rubygems.org/gems/erhu" alt="RubyGems Version">
     <img src="https://img.shields.io/gem/v/erhu.svg?style=flat-square&label=current-version" alt="RubyGems Version" />
   </a>
