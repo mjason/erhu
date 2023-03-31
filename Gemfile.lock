@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    erhu (0.1.8)
+    erhu (0.1.9)
       dotenv (~> 2.8, >= 2.8.1)
       down (~> 5.0)
       git (~> 1.18)

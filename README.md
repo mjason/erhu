@@ -9,6 +9,9 @@
 
 一个创新的包管理，可以用来管理C语言的包，或者管理算法的包，理论可以用在各种地方，目前主要支持C++，算法管理。
 
+## 更行记录
+- 0.1.10 增加对tar.gz的支持，如果是编译工具且有文件链接，必须采用 tar.gz
+
 ## install
 ```
 gem install erhu
@@ -80,6 +83,9 @@ package "https://github.com/DaveGamble/cJSON/archive/refs/tags/v1.7.15.zip", nam
   # 该方法使用TTY::Spinner库来显示进度条，并通过调用Zip::File库中的方法来解压缩zip文件。
   # 它迭代zip文件中的每个条目，并使用条目名称中的信息来构造目标路径。
   unzip(package_file_path, "./libs/cjson")
+
+  # 解压tar.gz
+  ungzip(tar_gz_archive, destination)
 end
 ```
 

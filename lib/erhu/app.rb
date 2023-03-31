@@ -64,13 +64,20 @@ module Erhu
       error! e
     end
 
-    def package(package_url, name: nil, &block)
+    def package(package_url, name: nil, extension: nil, &block)
       raise "package url is required" if package_url.blank?
       raise "name: 'package name' is required" if name.blank?
-      
+
+      _extension = extract_extension(package_url)
+      if _extension == ".zip" or _extension == ".tar.gz"
+        extension ||= _extension
+      else
+        extension ||= ".zip"
+      end
+
       package_name = name
       package_hex = name.unpack('H*').first
-      package_file_path = "#{@erhu_path}/#{package_name}-#{package_hex}.zip"
+      package_file_path = "#{@erhu_path}/#{package_name}-#{package_hex}#{extension}"
       
       if File.exist?(package_file_path)
         puts "ignored #{package_url}"
@@ -96,7 +103,8 @@ module Erhu
         return
       end
 
-      self.zip(package_file_path, package_name)
+      self.zip(package_file_path, package_name) if extension == ".zip"
+      ungzip(package_file_path, File.join(@target, package_name)) if extension == ".tar.gz"
     end
 
     def zip(package_file_path, package_name)
