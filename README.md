@@ -91,5 +91,12 @@ end
 
 具体使用案例，可以查看项目里的 demo 目录
 
+
+## 中国地区以及windows安装办法
+- windows 安装ruby https://rubyinstaller.cn
+- gem 中国源 https://gems.ruby-china.com
+- mac 直接换源 安装 或者 科学上网 即可
+- linux 某些发行版也是带ruby的，版本要求2.6以上即可
+
 ## 总结
 这是一个很灵活的包管理，希望你用的开心，开源协议MIT
