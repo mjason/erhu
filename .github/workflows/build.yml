@@ -21,7 +21,7 @@ jobs:
 
       - name: Build package
         run: |
-          fpm -s gem -t deb --name erhu --version 0.1.10 erhu.gemspec
+          fpm -s gem -t deb erhu.gemspec
 
       - name: Publish package
         uses: actions/upload-artifact@v2
